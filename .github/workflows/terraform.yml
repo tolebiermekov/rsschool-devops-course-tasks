@@ -19,6 +19,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
       - name: Terraform Format Check
         run: terraform fmt -check
+        working-directory: 01-basic-configuration
 
   terraform-plan:
     runs-on: ubuntu-latest
@@ -34,8 +35,10 @@ jobs:
           aws-region: eu-north-1
       - name: Terraform Init
         run: terraform init
+        working-directory: 01-basic-configuration
       - name: Terraform Plan
         run: terraform plan
+        working-directory: 01-basic-configuration
 
   terraform-apply:
     if: github.ref == 'refs/heads/main'
@@ -52,5 +55,7 @@ jobs:
           aws-region: eu-north-1
       - name: Terraform Init
         run: terraform init
+        working-directory: 01-basic-configuration
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        working-directory: 01-basic-configuration
